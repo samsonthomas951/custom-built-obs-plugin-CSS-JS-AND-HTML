@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Displayed Lyrics</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 1200px;
+            text-align: center;
+        }
+        h1 {
+            color: #33cc33; 
+        }
+        #storedLyrics {
+            font-size: 40px;
+            color: #ffcc00;
+            margin-top: 10px;
+            font-family: Georgia, serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="storedSongTitle">Displayed Lyrics</h1>
+        <div id="storedLyrics"></div>
+    </div>
+    <script>
+        function updateDisplayedContent() {
+            const storedSongTitle = localStorage.getItem('songTitle');
+            const storedSongTitleDiv = document.getElementById('storedSongTitle');
+            storedSongTitleDiv.textContent = storedSongTitle || "No song title available.";
+
+            const storedLyrics = localStorage.getItem('displayedLyrics');
+            const storedLyricsDiv = document.getElementById('storedLyrics');
+            storedLyricsDiv.innerHTML = storedLyrics ? storedLyrics.replace(/\n/g, '<br>') : "No lyrics available.";
+    }
+    updateDisplayedContent();
+    setInterval(updateDisplayedContent, 500);
+    </script>
+</body>
+</html>
+
